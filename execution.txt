@@ -1,0 +1,36 @@
+0, 51, CPU Burst
+51, 1, switch to kernel mode
+52, 10, context saved
+62, 1, find vector 14 in memory position 0x1C
+63, 1, load address 0x165 into the PC
+64, 108, SYSCALL: run the ISR
+172, 197, transfer data
+369, 149, check for errors
+518, 1, IRET
+519, 39, CPU Burst
+558, 1, check priority of interrupt
+559, 1, check if masked
+560, 1, switch to kernel mode
+561, 3, context saved
+564, 1, find vector 14 in memory position 0x1C
+565, 1, load address 0x165 into the PC
+566, 456, END_IO
+1022, 1, IRET
+1023, 72, CPU Burst
+1095, 1, switch to kernel mode
+1096, 10, context saved
+1106, 1, find vector 19 in memory position 0x26
+1107, 1, load address 0x765 into the PC
+1108, 289, SYSCALL: run the ISR
+1397, 57, transfer data
+1454, 304, check for errors
+1758, 1, IRET
+1759, 28, CPU Burst
+1787, 1, check priority of interrupt
+1788, 1, check if masked
+1789, 1, switch to kernel mode
+1790, 1, context saved
+1791, 1, find vector 19 in memory position 0x26
+1792, 1, load address 0x765 into the PC
+1793, 652, END_IO
+2445, 1, IRET

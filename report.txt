@@ -1,0 +1,17 @@
+Interrupt Report
+
+	When the execution of the ISR runs long there are a couple of possible outcomes to this issue. First there are no requests that need to run so the ISR is fine to run as long as 
+	it needs. The second being that there is some form of request that needs to be run. This could include something like another interrupt that has to run. The CPU would be busy 
+	and would not be able to handle this interrupt causing it to be blocked and cause delays among this and other interrupts. The other thing this causes is the handling overhead 
+	in kernel mode and not being able to be in user mode disrupting the flow and efficiency of the overall system. For each step in the ISR process, having a difference in speed in 
+	any of the steps does not directly influence the processing time of any other individual task in the process but will contribute to the overall time of execution and cause 
+	overhead for running other CPU and I/O operations. In the example of trace1 as seen in the folder we have approximately 12596ms of processing time total assuming max values 
+	were used in the random generation of time for context. We will have overhead in all of the tasks that are in between the calls and main parts of the code that need to use lots 
+	of CPU time which includes the ISR, CPU Execution and END_IO process. Assuming max values in the random generation of time for context there will be 0ms of overhead in the CPU 
+	execution, 7ms of overhead in the SYSCALL execution and 9ms of overhead in the END_IO execution. With all the calls in our trace1 file we can see a total of 352ms of overhead. 
+	Calculating our total overhead we find 352/12596 will give a final 2.72%. This means that 2.72% of all execution time is spent on overhead activities. If we have addresses of 4 
+	bytes rather than 2 then the size of our vector table as well as any other memory structure where these addresses would be stored would have to be doubled to be able to fit them.
+	The processing time would also increase as it would take longer to read through and fetch each address. If we have a faster CPU and all processing time takes half the time then 
+	we would see an overall speedup as most of the processing is from the CPU in our tests as the overhead is only 2-3%. This would also increase the percentage of overhead assuming
+	the CPU increase would not affect the other pieces of hardware. Also depending on how much faster the CPU becomes in comparison to the speed of the I/O operations then we could
+	see a bottleneck making the system I/O-bound since the CPU is pumping out taks faster than the I/O causing a backup for the I/O.
